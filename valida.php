@@ -1,11 +1,21 @@
 <?php
-
+session_start();
 $nombre=$_POST['form_usuario'];
-echo $nombre;
-print_r($_POST);
-if(isset($_POST['form_boton']) and empty($_POST['form_usuario'])and empty($_POST['form_contrasena'])){
+$nombre;
+
+if(isset($_POST['form_boton']) and (!empty($_POST['form_usuario'])) and (!empty($_POST['form_contrasena']))){
    echo "Bienvenido... ".$nombre;
-   print_r($_POST); 
+   $_SESSION['nombreusuario']=$nombre;
+   
+   for($i=1;$i<10;$i++){
+      echo "<br>Leer mensaje <a href='mostrarmensaje.php?id=".$i."'>".$i."</a>";
+      echo "<br>Bienvenido... ".$_SESSION['nombreusuario'];
+
+echo "<br>Hoy es ... ".$_SESSION['acceso']."<br>";
+   }
+   
+   
+    
 }else{
     echo "debes llenar el <a href='index.php'>formulario</a>";
 }
